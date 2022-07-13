@@ -1,4 +1,6 @@
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -27,8 +29,9 @@ public class Main {
             } else if (personInput == 6) {
                 Finish.correction();
             } else if (personInput == 7) {
-                System.out.println("fsdjks");
-                Finish.checkout();
+                Save save = new Save(new File("yourOrder.txt"));
+                save.saveTheCheck();
+                return;
             }
             Finish.printMenu();
             personInput = scanner.nextInt();

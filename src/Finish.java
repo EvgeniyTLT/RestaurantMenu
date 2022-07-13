@@ -39,6 +39,7 @@ public class Finish {
         try {
             showFinish();
             Scanner scanner = new Scanner(System.in);
+            System.out.println("выберите пункт для удаления");
             System.out.println("для выхода в основное меню нажмите: " + finish.size());
             scanner = new Scanner(System.in);
             int personInput = scanner.nextInt();
@@ -47,7 +48,10 @@ public class Finish {
                 if (personInput < 0 || personInput > finish.size()) {
                     System.out.println("некоректный ввод");
                     System.out.println("");
+                    return;
                 }
+                System.out.println("выберите пункт для удаления");
+                System.out.println("для выхода в основное меню нажмите: " + finish.size());
                 finish.remove(personInput);
                 showFinish();
                 personInput = scanner.nextInt();
@@ -59,32 +63,18 @@ public class Finish {
     }
 
     public static void checkout() {
-        int sum = 0;
-
         try {
             File file = new File("yourOrder.txt");
             PrintWriter pw = new PrintWriter("yourOrder.txt");
             for (String f : finish
             ) {
                 pw.println(f);
-
             }
             pw.close();
-            Scanner scanner = new Scanner("yourOrder.txt");
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] numbers = line.split(",");
-                sum += Integer.parseInt(numbers[2]);
-            }
-
-            System.out.println("В оплате: " + sum + " рублей");
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
-
 }
+
+
