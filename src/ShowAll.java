@@ -4,28 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ShowSalads {
+
+public class ShowAll {
     private File file;
     private List<String> menu = new ArrayList<>();
     private List<String> personMenu = new ArrayList<>();
     private Scanner scanner;
 
-    public ShowSalads() {
-        this.file = new File("salads.txt");
+    public ShowAll(File file) {
+        this.file = file;
         try {
-            this.scanner = new Scanner(this.file);
+            this.scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
-
     public void addMenu() {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             menu.add(line);
         }
         menu.remove(0);
-
     }
 
     public void showMenu() {
@@ -37,32 +36,32 @@ public class ShowSalads {
     }
 
     public void choice() {
-        addMenu();
-        showMenu();
-        scanner = new Scanner(System.in);
-        int personInput = scanner.nextInt();
-        if (personInput == menu.size()) return;
-        while (personInput != menu.size()) {
-            if (personInput < 0 || personInput > menu.size()) {
-                System.out.println("некоректный ввод");
-                System.out.println("");
-            }
-            Finish.getFinish().add(menu.get(personInput));
-            personMenu.add(menu.get(personInput));
+        try {
+            addMenu();
             showMenu();
-            personInput = scanner.nextInt();
+            scanner = new Scanner(System.in);
+            int personInput = scanner.nextInt();
+            if (personInput == menu.size()) return;
+            while (personInput != menu.size()) {
+                if (personInput < 0 || personInput > menu.size()) {
+                    System.out.println("некоректный ввод");
+                    System.out.println("");
+                }
+                Finish.getFinish().add(menu.get(personInput));
+                personMenu.add(menu.get(personInput));
+                showMenu();
+                personInput = scanner.nextInt();
+            }
+            System.out.println("ваш выбор:");
+            for (String x : personMenu
+            ) {
+                System.out.println(x);
+            }
+            System.out.println("");
+        } catch (Exception e) {
+            System.out.println("некоректный ввод");
         }
-        System.out.println("ваш выбор:");
-        for (String x : personMenu
-        ) {
-            System.out.println(x);
-        }
-        System.out.println("");
 
-    }
-
-    public List<String> getPersonMenu() {
-        return personMenu;
     }
 
     @Override
@@ -75,5 +74,7 @@ public class ShowSalads {
                 '}';
     }
 }
+
+
 
 

@@ -27,7 +27,6 @@ public class Finish {
 
     }
 
-
     public static void showFinish() {
         System.out.println("Ваш заказ:");
         for (int i = 0; i < finish.size(); i++) {
@@ -35,7 +34,6 @@ public class Finish {
         }
         System.out.println(" ");
     }
-
 
     public static void correction() {
         try {

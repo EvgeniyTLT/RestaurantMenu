@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
@@ -5,21 +6,21 @@ public class Main {
         Finish.printMenu();
         Scanner scanner = new Scanner(System.in);
         int personInput = scanner.nextInt();
-        ShowDrinks showDrinks = new ShowDrinks();
-        ShowFirst showFirst = new ShowFirst();
-        ShowSecond showSecond = new ShowSecond();
-        ShowSalads showSalads = new ShowSalads();
         while (personInput != 8) {
             if (personInput < 1 || personInput > 8) {
                 System.out.println("некоректный ввод");
                 System.out.println("");
             } else if (personInput == 1) {
+                ShowAll showDrinks = new ShowAll(new File("drinksMenu.txt"));
                 showDrinks.choice();
             } else if (personInput == 2) {
+                ShowAll showFirst = new ShowAll(new File("first.txt"));
                 showFirst.choice();
             } else if (personInput == 3) {
+                ShowAll showSecond = new ShowAll(new File("second.txt"));
                 showSecond.choice();
             } else if (personInput == 4) {
+                ShowAll showSalads = new ShowAll(new File("salads.txt"));
                 showSalads.choice();
             } else if (personInput == 5) {
                 Finish.showFinish();
@@ -32,6 +33,7 @@ public class Main {
             Finish.printMenu();
             personInput = scanner.nextInt();
         }
+
     }
 
 
